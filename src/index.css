@@ -1,0 +1,302 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game-container {
+  text-align: center;
+  width: 95vw;
+  max-width: 600px;
+  height: auto;
+  margin: 2vh auto;
+  padding: 4vh 2vw;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dce1e5;
+}
+
+.menu {
+  padding: 4vh 2vw;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+header {
+  margin-bottom: 2vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+}
+
+.score, .energy {
+  font-size: 2.5vh;
+  padding: 0.5em 1em;
+  background: #e9f5f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.field {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  max-height: 500px;
+  background: linear-gradient(to bottom, #4CAF50 0%, #8BC34A 100%);
+  border: 4px solid #388E3C;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.player {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12vw;
+  min-width: 60px;
+  max-width: 100px;
+  height: 12vw;
+  min-height: 60px;
+  max-height: 100px;
+  background: linear-gradient(to bottom right, #333, #777);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  animation: player-kick 0.75s ease-in-out;
+}
+
+.goal {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20vw;
+  min-width: 100px;
+  max-width: 150px;
+  height: 12vh;
+  min-height: 60px;
+  max-height: 100px;
+  background: none;
+  border: 4px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ball {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4vw;
+  min-width: 20px;
+  max-width: 30px;
+  height: 4vw;
+  min-height: 20px;
+  max-height: 30px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #444;
+  animation-duration: 1.5s;
+}
+
+/* Energy Refill Button Styles */
+.energy-button-container {
+  margin-top: 2vh;
+}
+
+.refill-energy-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.refill-energy-button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+.refill-energy-button:hover:not(:disabled) {
+  background-color: #fb8c00;
+  transform: scale(1.05);
+}
+
+/* Updated Goal Paths for faster goal shots */
+@keyframes goal-path-1 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 85%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes goal-path-2 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 85%;
+    transform: translateX(-52%);
+  }
+}
+
+@keyframes goal-path-3 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 85%;
+    transform: translateX(-48%);
+  }
+}
+
+/* Miss Paths: Ensure the ball avoids going into the goal */
+@keyframes miss-path--1-1 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(-80%);
+  }
+}
+
+@keyframes miss-path--1-2 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(-75%);
+  }
+}
+
+@keyframes miss-path--1-3 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(-85%);
+  }
+}
+
+@keyframes miss-path-1-1 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(20%);
+  }
+}
+
+@keyframes miss-path-1-2 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(25%);
+  }
+}
+
+@keyframes miss-path-1-3 {
+  0% {
+    bottom: 10%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 70%;
+    transform: translateX(30%);
+  }
+}
+
+.result-text {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3vh;
+  animation: show-result 1.2s forwards;
+  opacity: 0;
+}
+
+.goal-text {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.miss-text {
+  color: #FF6347;
+  font-weight: bold;
+}
+
+@keyframes show-result {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+@keyframes player-kick {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8%);
+  }
+}
