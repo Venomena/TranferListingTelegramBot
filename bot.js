@@ -12,7 +12,7 @@ bot.command('startgame', (ctx) => {
                 [
                     {
                         text: "Play Soccer Clicker",
-                        web_app: { url: 'https://00b1-76-133-204-213.ngrok-free.app' } // Your ngrok URL here
+                        web_app: { url: 'https://tranferlistingtelegrambot.onrender.com' } // Your ngrok URL here
                     }
                 ]
             ]
